@@ -63,7 +63,7 @@ for j = 1:1
 	% media = sum(pos)/length(pos);
 	% maxx = max(pos);
 	% fprintf('Media: %f \nBiggest Distance: %f\n',media,maxx);
-
+	% Testeteste
 	theta1 = [theta1 theta];
 	phi1 = [phi1 phi];
 
