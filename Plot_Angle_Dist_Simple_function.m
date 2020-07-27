@@ -1,8 +1,6 @@
-tic
+function out = Plot_Angle_Dist_Simple_function(
 
-clear all, close all
-data = importdata('.\HV_Scan\helper.txt');
-theta1=[]; phi1 = []
+theta1=[]; phi1 = [];
 
 for j = 1:2
 	
@@ -68,9 +66,6 @@ for j = 1:2
 
 end
 
-sphplot(theta1+pi/2,phi1)
 hold off
-length(data)
 
-
-toc
+end
