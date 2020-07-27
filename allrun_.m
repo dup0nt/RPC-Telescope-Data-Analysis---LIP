@@ -64,8 +64,6 @@ end
 %% 3.chamar cada file nas funções
 
 
-
-
 Theta1 = [];phi1 =[];
 for i = filenames
     [Theta,phi]=Plot_Angle_Dist_function(i) 
@@ -76,5 +74,6 @@ for i = filenames
     
     
 end
+
 sphplot(phi1,Theta1+pi/2)
 
