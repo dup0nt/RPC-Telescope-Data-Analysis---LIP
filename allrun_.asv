@@ -5,9 +5,15 @@
 clear all, close all
 
 
-filenames = string(importdata('.\HV_Scan\helper.txt'));
+data = importdata('.\HV_Scan\helper.txt');
 
 
+for  ; %input(sprintf('Selecione 1 a %.0f: ',length(data)));
+
+save = data(ficheiro);
+save = string(save);
+
+filenames=load(('.\HV_Scan\' + save))
 
 
 %% 2.script para organizar os ficheiros
@@ -16,12 +22,12 @@ filenames = string(importdata('.\HV_Scan\helper.txt'));
 clc
 
 %"[numero do evento    file   numero_de_eventos outlayers distancia_média  ]"
-for file = filenames
-
+for file = "20200406105251_5980V"
+%[Theta,phi]=Plot_Angle_Dist_function(file) 
 var(find(file==filenames)).num = find(file==filenames);  
 var(find(file==filenames)).name = file;
 var(find(file==filenames)).events = num_of_events(file);
-
+var(find(file==filenames)).Theta = Theta
 
 
 
