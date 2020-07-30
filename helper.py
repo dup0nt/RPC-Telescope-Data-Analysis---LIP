@@ -1,7 +1,9 @@
 import os
 
-path = 'C:\\Users\\ASUS\\OneDrive - Universidade de Coimbra\\Faculdade do Diogo\\2 ano\\Estágio\\HV_Scan'
+path = 'C:\\Users\\ASUS\\OneDrive - Universidade de Coimbra\\Faculdade do Diogo\\2 ano\\Estagio\\RPC-Telescope-Data-Analysis---LIP\\Scans_Cloud'
 #path = 'C:\\Users\\ASUS\\Documents'
+
+
 file_path = os.path.join(path, 'helper.txt')
 files=[]
 for file in os.listdir(path):

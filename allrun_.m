@@ -4,12 +4,24 @@
 %Loader de Valores de Pasta
 clear all, close all
 
+<<<<<<< HEAD
+filenames = string(importdata('.\Scans_Cloud\helper.txt'))';
+filenames = filenames(1:4);
+=======
+>>>>>>> parent of f766a1e... Data Sheets Update
 
 filenames = string(importdata('.\HV_Scan\helper.txt'));
 
 
 
 
+<<<<<<< HEAD
+
+
+
+
+=======
+>>>>>>> parent of f766a1e... Data Sheets Update
 %% 2.script para organizar os ficheiros
 
 
@@ -57,14 +69,15 @@ end
 
 Theta1 = [];phi1 =[];
 for i = filenames
-    [Theta,phi]=Plot_Angle_Dist_function(i) 
+	
+    [Theta,phi, pos] = Plot_Angle_Dist_Simple_function(i);
     
     
-    Theta1=[Theta1 ;Theta];disp(length(Theta1))
+    Theta1=[Theta1 Theta];disp(length(Theta1))
     phi1= [phi1 phi];disp(length(phi1)) 
     
     
 end
 
-sphplot(phi1,Theta1+pi/2)
+sphplot(Theta1+pi/2,phi1)
 
