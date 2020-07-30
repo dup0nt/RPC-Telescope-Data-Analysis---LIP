@@ -53,9 +53,9 @@ for i = found			%9652
 
 	%%%======================= Grafico ================================
 
-	%hold on
+	hold on
 
-	%axis([min_x max_x min_y max_y 0,imgzposition_3]);
+	axis([min_x max_x min_y max_y 0,imgzposition_3]);
 
 % 		surf([min_x max_x],[min_y max_y],repmat(imgzposition_1, [2 2]),...
 % 		new_1','facecolor','texture')
@@ -65,9 +65,9 @@ for i = found			%9652
 % 
 % 		surf([min_x max_x],[min_y max_y],repmat(imgzposition_3, [2 2]),...
 % 		new_3','facecolor','texture')
-% 		
-% 		scattergrid(0,imgzposition_3)
-	%view(45,20);
+		
+	%	scattergrid(0,imgzposition_3)
+	view(45,20);
 
 
 	%%%===================== Cálculo Valores ==========================
@@ -88,47 +88,47 @@ for i = found			%9652
 	ponto_intersec = double(ponto_intersec);
 	
 	%plot3([a(:,1)'; b(:,1)'],[a(:,2)'; b(:,2)'],[a(:,3)'; b(:,3)'],'.-c','LineWidth',2);
-	%hold off
+	hold off
 
-	%clear t x y z
+	clear t x y z
 	%Vetor para angulo
 	v = b-a;
 
-	theta = [theta,rad2deg(atan2(sqrt(v(1)^2+v(2)^2),v(3)))];
+	theta = [theta, (atan2(sqrt(v(1)^2+v(2)^2),v(3)))];
 
-% 	posicao_calc = [posicao_calc ponto_intersec];
-% 	posicao_placa = [posicao_placa x2 y2];
+	posicao_calc = [posicao_calc ponto_intersec];
+	posicao_placa = [posicao_placa x2 y2];
 	
 	%Vetor para distancia
 	X1 = x2-0.5-ponto_intersec(1);
 	Y1 = y2-0.5-ponto_intersec(2);
 
 	pos = [pos sqrt((X1).^2+(Y1).^2)];
-	%legend(['dist = ' num2str(pos(index))]) 
+	legend(['dist = ' num2str(pos(index))]) 
 
 	%%%================ Angle by Spherical Coordinates ================
 
-	%phi(index) = cart2pol(v(:,1),v(:,2),v(:,3));
+	phi(index) = cart2pol(v(:,1),v(:,2),v(:,3));
 
-	%pause(0.001)
-	%clf
+	pause(0.001)
+	clf
 
 
 		
 end
 
 
-%figure
-%subplot 211
-%histogram(Theta, 20);title("Angle between vector and XoY")
-%subplot 212
-%histogram(pos); title('Distance between "real point" and observed');
+figure
+subplot 211
+histogram(theta, 20);title("Angle between vector and XoY")
+subplot 212
+histogram(pos); title('Distance between "real point" and observed');
 
 media = sum(pos)/length(pos);
 maxx = max(pos);
 fprintf('Media: %f\n Biggest Distance: %f\n',media,maxx);
 
-%figure
-%sphplot(phi,theta+90)
+figure
+sphplot(theta+pi/2,phi)
 
 toc
