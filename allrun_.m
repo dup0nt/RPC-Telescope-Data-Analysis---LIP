@@ -28,19 +28,16 @@ var(find(file==filenames)).year = year;     %year
 var(find(file==filenames)).month= month;    %month 
 var(find(file==filenames)).day = day;       %event day
 
-
-
-% 
-% if var(find(file==filenames)).events>50
-%          var(find(file==filenames)).quality=1;
-% else
-%     var(find(file==filenames)).quality=0;
-% end
-
-
-%var(find()file==filename)).dist   = 
 end
 
+%% criar tabela de seleção
+
+
+matrix = []
+for i =  length(filenames) 
+new_matrix = [var(i).name var(i).num var(i).events var(i).medpos var(i).maxpos] 
+matrix = [matrix ; new_matrix];
+end
 
 %% 3. seleccionar os ficheiros que queremos
 
