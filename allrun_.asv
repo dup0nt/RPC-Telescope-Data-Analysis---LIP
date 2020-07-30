@@ -15,30 +15,29 @@ clc
 %
 for file = filenames
 
-var(find(file==filenames)).num = find(file==filenames);                  %numero do evento
-var(find(file==filenames)).name = file;                                  %nome do evento
-var(find(file==filenames)).events = num_of_events(file);
-var(find(file==filenames)).medpos  = sum(dist(file))/length(dist(file));
-var(find(file==filenames)).maxpos = max(dist(file));
+var(find(file==filenames)).num = find(file==filenames);       %numero do evento
+var(find(file==filenames)).name = file;                       %nome do evento
+var(find(file==filenames)).events = num_of_events(file);      %numero de eventos selecionados
+                                                              %alterar esta
+                                                              %função como
+                                                              %filtro
+var(find(file==filenames)).medpos  = sum(dist(file))/length(dist(file)); %media das distâncias 
+var(find(file==filenames)).maxpos = max(dist(file));                     %dist media
 [year,month,day] = monthday(file);
+var(find(file==filenames)).year = year;     %year
+var(find(file==filenames)).month= month;    %month 
+var(find(file==filenames)).day = day;       %event day
 
-var(find(file==filenames)).num = find(file==filenames);        %ano do evento
-var(find(file==filenames)).num = find(file==filenames);        %numero do evento
-var(find(file==filenames)).num = find(file==filenames);        %numero do evento
-
-
-
-% 
-% if var(find(file==filenames)).events>50
-%          var(find(file==filenames)).quality=1;
-% else
-%     var(find(file==filenames)).quality=0;
-% end
-
-
-%var(find()file==filename)).dist   = 
 end
 
+%% criar tabela de seleção
+
+
+matrix = []
+for i =  length(filenames) 
+new_matrix = [var(i).name var(i).num var(i).events var(i).medpos var(i).maxpos] 
+matrix = [matrix ; new_matrix];
+end
 
 %% 3. seleccionar os ficheiros que queremos
 
