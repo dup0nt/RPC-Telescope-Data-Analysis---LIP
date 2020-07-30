@@ -57,16 +57,15 @@ end
 
 %% 3.chamar cada file nas funções
 
-
-Theta1 = [];phi1 =[];
+filenames = event_sorted
+Theta1 = [];phi1 =[];dist=[];
 for i = filenames
     
     [Theta,phi]=Plot_Angle_Dist_function(i) 
-    Theta1=[Theta1 ;Theta];disp(length(Theta1))
-    phi1= [phi1 phi];disp(length(phi1)) 
-    
-    
+    Theta1=[Theta1 ;Theta];disp(length(Theta1));
+    phi1= [phi1 phi];disp(length(phi1));
+    dist1= [dist1 dist(i)];
 end
 
 sphplot(phi1,Theta1+pi/2)
-
+hist(dist)
