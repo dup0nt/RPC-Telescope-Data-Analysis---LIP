@@ -1,14 +1,13 @@
 tic
 
-<<<<<<< HEAD
 clear all
 data = string(importdata('.\Scans_Cloud\helper.txt'));
 theta1=[]; phi1 = [];
-=======
-clear all, close all
-data = importdata('.\HV_Scan\helper.txt');
-theta1=[]; phi1 = []
->>>>>>> parent of f766a1e... Data Sheets Update
+
+% clear all, close all
+% data = importdata('.\HV_Scan\helper.txt');
+% theta1=[]; phi1 = []
+
 
 for j = 1:10
 	

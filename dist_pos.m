@@ -1,9 +1,9 @@
-function [pos] = dist_pos(file)
+function [pos] = dist_pos(path, file)
 
 
 
 
-load(file);
+load(path + file);
 
 
 I = find(Q1 > 0); M1 = Q1*0; M1(I) = 1;EventM1 = sum(M1.');
