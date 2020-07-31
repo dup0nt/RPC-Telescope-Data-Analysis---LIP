@@ -13,16 +13,18 @@ filenames = string(importdata('.\HV_Scan\helper.txt'));
 clc
 
 %
-for file = filenames
+for num = length(filenames)
+
+file = filenames(num);
 
 var(find(file==filenames)).num = find(file==filenames);       %numero do evento
 var(find(file==filenames)).name = file;                       %nome do evento
-var(find(file==filenames)).events = num_of_events(file);      %numero de eventos selecionados
+var(find(file==filenames)).events = num_of_events(path,file);      %numero de eventos selecionados
                                                               %alterar esta
                                                               %função como
                                                               %filtro
-var(find(file==filenames)).medpos  = sum(dist(file))/length(dist(file)); %media das distâncias 
-var(find(file==filenames)).maxpos = max(dist(file));                     %dist media
+var(find(file==filenames)).medpos  = sum(dist_pos(path,file))/length(dist_pos(path,file)); %media das distâncias 
+var(find(file==filenames)).maxpos = max(dist_pos(path,file));                     %dist media
 [year,month,day] = monthday(file);
 var(find(file==filenames)).year = year;     %year
 var(find(file==filenames)).month= month;    %month 
@@ -59,13 +61,14 @@ end
 
 filenames = event_sorted
 Theta1 = [];phi1 =[];dist=[];
+
 for i = filenames
-    
-    [Theta,phi]=Plot_Angle_Dist_function(i) 
-    Theta1=[Theta1 ;Theta];disp(length(Theta1));
-    phi1= [phi1 phi];disp(length(phi1));
+    [Theta,phi] = Plot_Angle_Dist_Simple_function(i); 
+    Theta1=[Theta1;Theta];	disp(length(Theta1));
+    phi1= [phi1;phi];		disp(length(phi1));
     dist1= [dist1 dist(i)];
+	
 end
 
-sphplot(phi1,Theta1+pi/2)
-hist(dist)
+%sphplot(phi1,Theta1+pi/2)
+%hist(dist)
