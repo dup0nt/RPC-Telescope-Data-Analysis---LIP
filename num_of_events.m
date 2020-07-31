@@ -1,6 +1,6 @@
-function I = num_of_events(path,evento)
+function I = num_of_events(pathe,evento)
 
-load(path + evento)     %Q1 Q2 Q3 são listas com os valores das respetivas placas
+load(pathe + evento)     %Q1 Q2 Q3 são listas com os valores das respetivas placas
 
 M1 = Q1>0;I = find(M1);EventM1 = sum(M1.');
 M2 = Q2>0;I = find(M2); EventM2 = sum(M2.');

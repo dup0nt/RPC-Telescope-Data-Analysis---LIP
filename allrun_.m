@@ -4,8 +4,8 @@
 %Loader de Valores de Pasta
 clear all, close all
 
-
-filenames = string(importdata('.\HV_Scan\helper.txt'));
+pathe = ".\HV_Scan\";
+filenames = string(importdata(pathe + 'helper.txt'));
 
 %% 2.script para organizar os ficheiros
 
@@ -13,18 +13,18 @@ filenames = string(importdata('.\HV_Scan\helper.txt'));
 clc
 
 %
-for num = length(filenames)
+for num = 1:length(filenames)
 
 file = filenames(num);
 
 var(find(file==filenames)).num = find(file==filenames);       %numero do evento
 var(find(file==filenames)).name = file;                       %nome do evento
-var(find(file==filenames)).events = num_of_events(path,file);      %numero de eventos selecionados
+var(find(file==filenames)).events = num_of_events(pathe,file);      %numero de eventos selecionados
                                                               %alterar esta
                                                               %função como
                                                               %filtro
-var(find(file==filenames)).medpos  = sum(dist_pos(path,file))/length(dist_pos(path,file)); %media das distâncias 
-var(find(file==filenames)).maxpos = max(dist_pos(path,file));                     %dist media
+% var(find(file==filenames)).medpos  = sum(dist_pos(path,file))/length(dist_pos(path,file)); %media das distâncias 
+% var(find(file==filenames)).maxpos = max(dist_pos(path,file));                     %dist media
 [year,month,day] = monthday(file);
 var(find(file==filenames)).year = year;     %year
 var(find(file==filenames)).month= month;    %month 
@@ -59,14 +59,16 @@ end
 
 %% 3.chamar cada file nas funções
 
-filenames = event_sorted
-Theta1 = [];phi1 =[];dist=[];
+filenames = event_sorted;
+theta1 = [];phi1 =[];dist1=[];
 
-for i = filenames
-    [Theta,phi] = Plot_Angle_Dist_Simple_function(i); 
-    Theta1=[Theta1;Theta];	disp(length(Theta1));
-    phi1= [phi1;phi];		disp(length(phi1));
-    dist1= [dist1 dist(i)];
+for num = 1:length(filenames)
+file = filenames(num);
+
+    [theta,phi,dist] = Plot_Angle_Dist_Simple_function(pathe,file);  %[theta,phi,pos] = output
+    theta1=[theta1 theta];	%disp(length(theta1));
+    phi1= [phi1 phi];		%disp(length(phi1));
+    dist1= [dist1 dist];
 	
 end
 
