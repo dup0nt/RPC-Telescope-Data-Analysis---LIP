@@ -4,28 +4,25 @@
 %Loader de Valores de Pasta
 clear all, close all
 
-path = '.\HV_Scan\';
-path = string(path);
-filenames = string(importdata(path + 'helper.txt'));
 
+filenames = string(importdata('.\HV_Scan\helper.txt'));
 
 %% 2.script para organizar os ficheiros
+
 
 clc
 
 %
-for num = length(filenames)
+for file = filenames
 
-file = filenames(num);
-load(path, file)
 var(find(file==filenames)).num = find(file==filenames);       %numero do evento
 var(find(file==filenames)).name = file;                       %nome do evento
-var(find(file==filenames)).events = num_of_events(path,file);      %numero de eventos selecionados
+var(find(file==filenames)).events = num_of_events(file);      %numero de eventos selecionados
                                                               %alterar esta
                                                               %função como
                                                               %filtro
-var(find(file==filenames)).medpos  = sum(dist_pos(path,file))/length(dist_pos(path,file)); %media das distâncias 
-var(find(file==filenames)).maxpos = max(dist(path,file));                     %dist media
+var(find(file==filenames)).medpos  = sum(dist(file))/length(dist(file)); %media das distâncias 
+var(find(file==filenames)).maxpos = max(dist(file));                     %dist media
 [year,month,day] = monthday(file);
 var(find(file==filenames)).year = year;     %year
 var(find(file==filenames)).month= month;    %month 
@@ -60,16 +57,15 @@ end
 
 %% 3.chamar cada file nas funções
 
-
-Theta1 = [];phi1 =[];
+filenames = event_sorted
+Theta1 = [];phi1 =[];dist=[];
 for i = filenames
     
-    [Theta,phi]=Plot_Angle_Dist_function(path,i) 
-    Theta1=[Theta1 ;Theta];disp(length(Theta1))
-    phi1= [phi1 phi];disp(length(phi1)) 
-    
-    
+    [Theta,phi]=Plot_Angle_Dist_function(i) 
+    Theta1=[Theta1 ;Theta];disp(length(Theta1));
+    phi1= [phi1 phi];disp(length(phi1));
+    dist1= [dist1 dist(i)];
 end
 
 sphplot(phi1,Theta1+pi/2)
-
+hist(dist)
