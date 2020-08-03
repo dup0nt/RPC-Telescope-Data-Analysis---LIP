@@ -60,26 +60,35 @@ end
 %% 4.chamar cada file nas funções
 
 filenames = event_sorted;
-theta1 = [];phi1 =[];dist1=[];
+all_thetas = []; all_phis =[]; all_dist = [];
 
 for num = 1:length(filenames)
 file = filenames(num);
 
-    [theta,phi,dist] = Plot_Angle_Dist_Simple_function(pathe,file);  %[theta,phi,pos] = output
-    theta1=[theta1 theta];	%disp(length(theta1));
-    phi1= [phi1 phi];		%disp(length(phi1));
-    dist1= [dist1 dist];
-	
+ [theta,phi,dist] = Plot_Angle_Dist_Simple_function(pathe,file);  %[theta,phi,pos] = output
+%	  all_thetas = [all_thetas theta];	%disp(length(all_thetas));
+%     all_phis = [all_phis phi];		%disp(length(all_phis));
+%     all_dist= [all_dist dist];
+
+% all_thetas{num} = theta;
+% all_phis{num} = phi;
+% all_dist{num} = dist;
+
+all_thetas(num,1:length(theta)) = theta;
+all_phis(num,1:length(phi)) = phi;
+
 end
 
-%sphplot(phi1,Theta1+pi/2)
-%hist(dist)
+figure
+sphplot(all_thetas+pi/2,all_phis)
+figure
+hist(dist)
 
 
 
 %% 5. fazer os plot mensais
 
-month= "04"
+month = "04"
 
 %procurar files
 ficheiros = find(var.month==month)  %procura quais os indices de cada file do Mês
