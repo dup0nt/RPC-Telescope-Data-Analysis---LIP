@@ -1,17 +1,17 @@
 tic
 
-clear all, close all
-data = importdata('.\HV_Scan\helper.txt');
-theta1=zeros(64); phi1=zeros(85);
+clear all
+data = string(importdata('.\Scans_Cloud\helper.txt'));
+theta1=[]; phi1 = [];
+
+% clear all, close all
+% data = importdata('.\HV_Scan\helper.txt');
+% theta1=[]; phi1 = []
 
 
-for j = 1:1
+for j = 1:10
 	
-	ficheiro = j; %input(sprintf('Selecione 1 a %.0f: ',length(data)));
-
-	save = string(data(ficheiro));
-
-	load(('.\HV_Scan\' + save))
+	load('.\Scans_Cloud\' + data(j))
 
 
 	I = find(Q1 > 0); M1 = Q1*0; M1(I) = 1; EventM1 = sum(M1.');
@@ -68,6 +68,8 @@ for j = 1:1
 	phi1 = [phi1 phi];
 
 end
+
+figure
 
 sphplot(theta1+pi/2,phi1)
 hold off

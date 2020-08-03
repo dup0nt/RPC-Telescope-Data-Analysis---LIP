@@ -1,35 +1,45 @@
 
 %% 1.downloads dos files
 
-filenames = ["20200406105251_5980V.mat","20200407102947_6180V.mat"...
-    "20200407230718_5850V.mat","20200408101601_5750V.mat","20200408235835_5650V.mat",...
-    "20200409105410_5550V.mat","20200410123312_5450V.mat","20200411153503_5350V.mat",...
-    "20200413121523_5250V.mat","20200413235709_5150V.mat","20200414110341_5050V.mat","20200415150034_4950V.mat",...
-    "20200416124233_4850V.mat","20200417125548_4750V.mat"];
+%Loader de Valores de Pasta
+clear all, close all
+
+pathe = ".\HV_Scan\";
+filenames = string(importdata(pathe + 'helper.txt'));
 
 %% 2.script para organizar os ficheiros
 
 
 clc
 
-%"[numero do evento    file   numero_de_eventos outlayers distancia_média  ]"
-for file = filenames
-  
-var(find(file==filenames)).num = find(file==filenames);  
-var(find(file==filenames)).name = file;
-var(find(file==filenames)).events = num_of_events(file);
+%
+for num = 1:length(filenames)
 
+file = filenames(num);
 
-if var(find(file==filenames)).events>50
-         var(find(file==filenames)).quality=1;
-else
-    var(find(file==filenames)).quality=0;
+var(find(file==filenames)).num = find(file==filenames);       %numero do evento
+var(find(file==filenames)).name = file;                       %nome do evento
+var(find(file==filenames)).events = num_of_events(pathe,file);      %numero de eventos selecionados
+                                                              %alterar esta
+                                                              %função como
+                                                              %filtro
+% var(find(file==filenames)).medpos  = sum(dist_pos(path,file))/length(dist_pos(path,file)); %media das distâncias 
+% var(find(file==filenames)).maxpos = max(dist_pos(path,file));                     %dist media
+[year,month,day] = monthday(file);
+var(find(file==filenames)).year = year;     %year
+var(find(file==filenames)).month= month;    %month 
+var(find(file==filenames)).day = day;       %event day
+
 end
 
+%% 3. criar tabela de seleção
 
-%var(find()file==filename)).dist   = 
+
+matrix = []
+for i =  length(filenames) 
+new_matrix = [var(i).name var(i).num var(i).events var(i).medpos var(i).maxpos] 
+matrix = [matrix ; new_matrix];
 end
-
 
 %% 3. seleccionar os ficheiros que queremos
 
@@ -44,40 +54,57 @@ for i = 1:length(var)
     
     
     
-    
-    
 end
 
-%% salvar codigo a cada  500 trig´ 
-%[numero do evento    file   numero_de_eventos outlayers distancia_média  ]
-counter =0;
-if length(".............")==500     %dar save de 500 em 500 saves
-   
-    counter = counter+1
-    
-    %escrever aqui as variaveis
-    T = table(A, B, 'VariableNames', { 'event', 'file_name','positive_events',"outlayers", "dist_media"} );
-    
-    name= strcat("Myfile",num2str(counter))
-    writetable(T, name)
-
-end
 
 %% 4.chamar cada file nas funções
 
+filenames = event_sorted;
+all_thetas = []; all_phis =[]; all_dist = [];
+
+for num = 1:length(filenames)
+file = filenames(num);
+
+ [theta,phi,dist] = Plot_Angle_Dist_Simple_function(pathe,file);  %[theta,phi,pos] = output
+%	  all_thetas = [all_thetas theta];	%disp(length(all_thetas));
+%     all_phis = [all_phis phi];		%disp(length(all_phis));
+%     all_dist= [all_dist dist];
+
+% all_thetas{num} = theta;
+% all_phis{num} = phi;
+% all_dist{num} = dist;
+
+all_thetas(num,1:length(theta)) = theta;
+all_phis(num,1:length(phi)) = phi;
+
+end
+
+figure
+sphplot(all_thetas+pi/2,all_phis)
+figure
+hist(dist)
 
 
 
-Theta1 = [];phi1 =[];
-for i = filenames
-    [Theta,phi]=Plot_Angle_Dist_function(i)  
-    Theta1=[Theta1 Theta];disp(length(Theta1))
-    phi1= [phi1 phi];disp(length(phi1))
+%% 5. fazer os plot mensais
+
+month = "04"
+
+%procurar files
+ficheiros = find(var.month==month)  %procura quais os indices de cada file do Mês
+
+for i = ficheiros
     
-    
-    
-    
+    matrix = [var(i).day;...
+        var(i).num_of_events...
+        ]
     
 end
-sphplot(phi1,Theta1+pi/2)
+
+subplot 211
+
+plot(matrix(1,:),matrix(2,:),'-s','MarkerSize',10,...
+    'MarkerEdgeColor','red',...
+    'MarkerFaceColor',[1 .6 .6])
+
 

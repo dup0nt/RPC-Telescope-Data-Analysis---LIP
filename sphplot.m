@@ -16,7 +16,7 @@ hold on
 for i = 1:length(elevation)
     xcart = 0;ycart=0;zcart=0;
     [xcart,ycart,zcart] = sph2cart(azimuth(i),elevation(i),1);
-    scatter3(xcart,ycart,abs(zcart),"filled","r")
+    scatter3(xcart,ycart,abs(zcart),"r")
  
     
 end
