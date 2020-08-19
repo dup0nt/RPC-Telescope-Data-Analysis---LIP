@@ -1,8 +1,5 @@
 function f = sphplot(elevation,azimuth)
 
-clf; clc
-
-
 [x,y,z] = sphere; 
 x = x(11:end,:);
 y = y(11:end,:); 
@@ -16,11 +13,8 @@ hold on
 for i = 1:length(elevation)
     xcart = 0;ycart=0;zcart=0;
     [xcart,ycart,zcart] = sph2cart(azimuth(i),elevation(i),1);
-    scatter3(xcart,ycart,abs(zcart),"r")
- 
-    
+    scatter3(xcart,ycart,abs(zcart),5,"r")
+     
 end
-
-
 end
 

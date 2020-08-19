@@ -85,7 +85,29 @@ end
 %figure
 %hist(dist)
 
-save primeira_run
+%% 5
+close all
+hold on
+view(0,90)
+count = 0;
+modular = 10;
+
+for i = 1:30 %length(all_thetas)
+	count = count + 1;
+	sphplot(all_thetas{i}+pi/2,all_phis{i})	
+	
+	if mod(count,modular)==0
+		print(gcf,genvarname(['figure ' num2str(count/modular)]),'-dpng')
+	end
+		
+end
+
+%saveas(gcf,genvarname(['figure' count)
+
+hold off
+
+
+%save primeira_run
 
 %% 5. fazer os plot mensais
 % 
