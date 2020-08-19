@@ -4,7 +4,7 @@
 %Loader de Valores de Pasta
 clear all, close all
 
-pathe = ".\HV_Scan\";
+pathe = ".\Scans_Cloud\";
 filenames = string(importdata(pathe + 'helper.txt'));
 
 %% 2.script para organizar os ficheiros
@@ -33,13 +33,13 @@ var(find(file==filenames)).day = day;       %event day
 end
 
 %% 3. criar tabela de seleção
-
-
-matrix = []
-for i =  length(filenames) 
-new_matrix = [var(i).name var(i).num var(i).events var(i).medpos var(i).maxpos] 
-matrix = [matrix ; new_matrix];
-end
+% 
+% 
+% matrix = []
+% for i =  length(filenames) 
+% new_matrix = [var(i).name var(i).num var(i).events var(i).medpos var(i).maxpos] 
+% matrix = [matrix ; new_matrix];
+% end
 
 %% 3. seleccionar os ficheiros que queremos
 
@@ -48,8 +48,8 @@ end
 event_sorted = [];     %vetor que guarda os eventos 
 for i = 1:length(var)
     
-    if var(i).events>50   % filtro selectro de eventos
-        event_sorted = [event_sorted var(i).name ] ; 
+    if var(i).events>1   % filtro selectro de eventos
+        event_sorted(i)= var(i).name; 
     end
     
     
@@ -63,6 +63,7 @@ filenames = event_sorted;
 all_thetas = []; all_phis =[]; all_dist = [];
 
 for num = 1:length(filenames)
+
 file = filenames(num);
 
  [theta,phi,dist] = Plot_Angle_Dist_Simple_function(pathe,file);  %[theta,phi,pos] = output
@@ -70,41 +71,41 @@ file = filenames(num);
 %     all_phis = [all_phis phi];		%disp(length(all_phis));
 %     all_dist= [all_dist dist];
 
-% all_thetas{num} = theta;
-% all_phis{num} = phi;
-% all_dist{num} = dist;
+all_thetas{num} = theta;
+all_phis{num} = phi;
+all_dist{num} = dist;
 
-all_thetas(num,1:length(theta)) = theta;
-all_phis(num,1:length(phi)) = phi;
-
+% all_thetas(num,1:length(theta)) = theta;
+% all_phis(num,1:length(phi)) = phi;
+% all_dist(num,1:length(dist)) = dist;
 end
 
-figure
-sphplot(all_thetas+pi/2,all_phis)
-figure
-hist(dist)
+%figure
+%sphplot(all_thetas{:}+pi/2,all_phis{:})
+%figure
+%hist(dist)
 
-
+save primeira_run
 
 %% 5. fazer os plot mensais
-
-month = "04"
-
-%procurar files
-ficheiros = find(var.month==month)  %procura quais os indices de cada file do Mês
-
-for i = ficheiros
-    
-    matrix = [var(i).day;...
-        var(i).num_of_events...
-        ]
-    
-end
-
-subplot 211
-
-plot(matrix(1,:),matrix(2,:),'-s','MarkerSize',10,...
-    'MarkerEdgeColor','red',...
-    'MarkerFaceColor',[1 .6 .6])
-
+% 
+% month = "04"
+% 
+% %procurar files
+% ficheiros = find(var.month==month)  %procura quais os indices de cada file do Mês
+% 
+% for i = ficheiros
+%     
+%     matrix = [var(i).day;...
+%         var(i).num_of_events...
+%         ]
+%     
+% end
+% 
+% subplot 211
+% 
+% plot(matrix(1,:),matrix(2,:),'-s','MarkerSize',10,...
+%     'MarkerEdgeColor','red',...
+%     'MarkerFaceColor',[1 .6 .6])
+% 
 

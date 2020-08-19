@@ -9,7 +9,7 @@ theta1=[]; phi1 = [];
 % theta1=[]; phi1 = []
 
 
-for j = 1:10
+for j = 1:1
 	
 	load('.\Scans_Cloud\' + data(j))
 
@@ -69,11 +69,12 @@ for j = 1:10
 
 end
 
-figure
+%figure
 
-sphplot(theta1+pi/2,phi1)
+%sphplot(theta1+pi/2,phi1)
 hold off
-length(data)
+%length(data)
 
 
 toc
+(

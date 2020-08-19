@@ -1,7 +1,7 @@
-function [theta,phi,pos] = Plot_Angle_Dist_Simple_function(path,file)
+function [theta,phi,pos] = Plot_Angle_Dist_Simple_function(pathe,file)
 
 
-load(path + file)
+load(pathe + file)
 
 I = find(Q1 > 0); M1 = Q1*0; M1(I) = 1; EventM1 = sum(M1.');
 I = find(Q2 > 0); M2 = Q2*0; M2(I) = 1; EventM2 = sum(M2.');
