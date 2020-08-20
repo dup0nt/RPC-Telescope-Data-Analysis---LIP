@@ -4,7 +4,7 @@
 %Loader de Valores de Pasta
 clear all, close all
 
-pathe = ".\Scans_Cloud\";
+pathe = ".\data_aug\";
 filenames = string(importdata(pathe + 'helper.txt'));
 
 %% 2.script para organizar os ficheiros
@@ -45,31 +45,27 @@ end
 
 %event_sorted = zeros(length(var));
 
-event_sorted = [];     %vetor que guarda os eventos 
-for i = 1:length(var)
-    
-    if var(i).events>1   % filtro selectro de eventos
-        event_sorted(i)= var(i).name; 
-    end
-    
-    
-    
-end
+% event_sorted = [];     %vetor que guarda os eventos 
+% for i = 1:length(var)
+%     
+%     if var(i).events>50   % filtro selectro de eventos
+%         event_sorted(i)= var(i).name; 
+%     end
+%     
+%     
+%     
+% end
 
 
 %% 4.chamar cada file nas funções
 
-filenames = event_sorted;
+%filenames = event_sorted;
 all_thetas = []; all_phis =[]; all_dist = [];
 
 for num = 1:length(filenames)
-
 file = filenames(num);
 
- [theta,phi,dist] = Plot_Angle_Dist_Simple_function(pathe,file);  %[theta,phi,pos] = output
-%	  all_thetas = [all_thetas theta];	%disp(length(all_thetas));
-%     all_phis = [all_phis phi];		%disp(length(all_phis));
-%     all_dist= [all_dist dist];
+[theta,phi,dist] = Plot_Angle_Dist_Simple_function(pathe,file);			%[theta,phi,pos] = output
 
 all_thetas{num} = theta;
 all_phis{num} = phi;
@@ -96,9 +92,9 @@ for i = 1:30 %length(all_thetas)
 	count = count + 1;
 	sphplot(all_thetas{i}+pi/2,all_phis{i})	
 	
-	if mod(count,modular)==0
-		print(gcf,genvarname(['figure ' num2str(count/modular)]),'-dpng')
-	end
+% 	if mod(count,modular)==0
+% 		print(gcf,genvarname(['figure ' num2str(count/modular)]),'-dpng')
+% 	end
 		
 end
 

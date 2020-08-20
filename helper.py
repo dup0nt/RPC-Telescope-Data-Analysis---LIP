@@ -1,6 +1,6 @@
 import os
 
-path = 'C:\\Users\\ASUS\\OneDrive - Universidade de Coimbra\\Faculdade do Diogo\\2 ano\\Estagio\\RPC-Telescope-Data-Analysis---LIP\\Scans_Cloud'
+path = 'C:\\Users\\ASUS\\OneDrive - Universidade de Coimbra\\Faculdade do Diogo\\2 ano\\Estagio\\RPC-Telescope-Data-Analysis---LIP\\data_aug'
 #path = 'C:\\Users\\ASUS\\Documents'
 
 
