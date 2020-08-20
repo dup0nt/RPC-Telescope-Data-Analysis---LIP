@@ -4,9 +4,8 @@
 %Loader de Valores de Pasta
 clear all, close all
 
-pathe = ".\Scans_Cloud\";
+pathe = ".\data_aug\";
 filenames = string(importdata(pathe + 'helper.txt'));
-filenames = filenames(1:2);
 
 %% 2.script para organizar os ficheiros
 
@@ -64,13 +63,9 @@ end
 all_thetas = []; all_phis =[]; all_dist = [];
 
 for num = 1:length(filenames)
-
 file = filenames(num);
 
- [theta,phi,dist] = Plot_Angle_Dist_Simple_function(pathe,file);			%[theta,phi,pos] = output
-%	  all_thetas = [all_thetas theta];	%disp(length(all_thetas));
-%     all_phis = [all_phis phi];		%disp(length(all_phis));
-%     all_dist= [all_dist dist];
+[theta,phi,dist] = Plot_Angle_Dist_Simple_function(pathe,file);			%[theta,phi,pos] = output
 
 all_thetas{num} = theta;
 all_phis{num} = phi;
