@@ -39,8 +39,9 @@ for i = found
 	[x2,y2] = find(new_2==1);
 
 	theta(index) = atan2(sqrt(v(1)^2+v(2)^2),v(3));
-
-	ponto_intersec = double(reta_intersection(a,b,imgzposition_2));
+	normal = [0,0,1];
+	
+	ponto_intersec = double(plane_line_intersect(normal,[0,0,imgzposition_2],a,b));
 	dist = [x2-0.5-ponto_intersec(1),y2-0.5-ponto_intersec(2)];
 	pos(index) = sqrt((dist(1))^2+(dist(2))^2);
 	phi(index) = cart2pol(v(:,1),v(:,2),v(:,3));
