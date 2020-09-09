@@ -4,6 +4,7 @@
 %Loader de Valores de Pasta
 clear all, close all
 
+
 pathe = ".\data_aug\";
 filenames = string(importdata(pathe + 'helper.txt'));
 
@@ -71,39 +72,37 @@ all_thetas{num} = theta;
 all_phis{num} = phi;
 all_dist{num} = dist;
 
-% all_thetas(num,1:length(theta)) = theta;
-% all_phis(num,1:length(phi)) = phi;
-% all_dist(num,1:length(dist)) = dist;
 end
-
-%figure
-%sphplot(all_thetas{:}+pi/2,all_phis{:})
-%figure
-%hist(dist)
+if (pathe)==".\data_jul\"
+dlmwrite('all_phis_JUL.txt',cell2mat(all_phis))
+dlmwrite('all_thetas_JUL.txt',cell2mat(all_thetas))
+elseif (pathe)==".\data_aug\"
+dlmwrite('all_phis_AUG.txt',cell2mat(all_phis))
+dlmwrite('all_thetas_AUG.txt',cell2mat(all_thetas))
+end
+	
+%test = rand([1 10000000])*pi-pi; dlmwrite('all_thetas_RAND.txt',(test))
+%test = rand([1 10000000])*2*pi-pi; dlmwrite('all_phis_RAND.txt',(test))
 
 %% 5
-close all
-hold on
-view(0,90)
-count = 0;
-modular = 10;
-
-for i = 1:30 %length(all_thetas)
-	count = count + 1;
-	sphplot(all_thetas{i}+pi/2,all_phis{i})	
-	
-% 	if mod(count,modular)==0
-% 		print(gcf,genvarname(['figure ' num2str(count/modular)]),'-dpng')
-% 	end
-		
-end
-
-%saveas(gcf,genvarname(['figure' count)
-
-hold off
-
-
-%save primeira_run
+% close all
+% hold on
+% view(0,90)
+% count = 0;
+% modular = 1;
+% 
+% for i = 1:length(filenames)
+% 	
+% 	sphplot(all_thetas{i}+pi/2,all_phis{i});
+% 	
+% 	if mod(i,modular)==0 || i == length(filenames)
+% 		print(gcf,genvarname(['figure_' var(i).month '_' num2str(i/modular)]),'-dpng','-r1000')
+% 		
+% 	end		
+% end
+% 
+% hold off
+%dlmwrite('all_phis_JUL.txt',cell2mat(all_phis))
 
 %% 5. fazer os plot mensais
 % 

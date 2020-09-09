@@ -57,16 +57,16 @@ for i = found			%9652
 
 	axis([min_x max_x min_y max_y 0,imgzposition_3]);
 
-% 		surf([min_x max_x],[min_y max_y],repmat(imgzposition_1, [2 2]),...
-% 		new_1','facecolor','texture')
-% 	
-% 		surf([min_x max_x],[min_y max_y],repmat(imgzposition_3/2, [2 2]),...
-% 		new_2','facecolor','texture')
-% 
-% 		surf([min_x max_x],[min_y max_y],repmat(imgzposition_3, [2 2]),...
-% 		new_3','facecolor','texture')
-		
-	%	scattergrid(0,imgzposition_3)
+	surf([min_x max_x],[min_y max_y],repmat(imgzposition_1, [2 2]),...
+	new_1','facecolor','texture')
+
+	surf([min_x max_x],[min_y max_y],repmat(imgzposition_3/2, [2 2]),...
+	new_2','facecolor','texture')
+
+	surf([min_x max_x],[min_y max_y],repmat(imgzposition_3, [2 2]),...
+	new_3','facecolor','texture')
+
+	scattergrid(0,imgzposition_3)
 	view(45,20);
 
 
@@ -77,8 +77,8 @@ for i = found			%9652
 	[x2,y2] = find(new_2==1);
 	[x3,y3] = find(new_3==1);
 
-% 		a = [(x1-1)*43+rand()*38+4,(y1-1)*43+rand()*38+4,0]; 
-% 		b = [(x3-1)*43+rand()*38+4,(y3-1)*43+rand()*38+4,imgzposition_3];
+	a = [(x1-1)*43+rand()*38+4,(y1-1)*43+rand()*38+4,0]; 
+	b = [(x3-1)*43+rand()*38+4,(y3-1)*43+rand()*38+4,imgzposition_3];
 
 	a = [x1-0.5,y1-0.5,0];
 	b = [x3-0.5,y3-0.5,imgzposition_3];
@@ -87,7 +87,7 @@ for i = found			%9652
 	ponto_intersec = reta_intersection(a,b,imgzposition_2);
 	ponto_intersec = double(ponto_intersec);
 	
-	%plot3([a(:,1)'; b(:,1)'],[a(:,2)'; b(:,2)'],[a(:,3)'; b(:,3)'],'.-c','LineWidth',2);
+	plot3([a(:,1)'; b(:,1)'],[a(:,2)'; b(:,2)'],[a(:,3)'; b(:,3)'],'.-c','LineWidth',2);
 	hold off
 
 	clear t x y z
@@ -110,7 +110,7 @@ for i = found			%9652
 
 	phi(index) = cart2pol(v(:,1),v(:,2),v(:,3));
 
-	pause(0.001)
+	pause(0.1)
 	clf
 
 

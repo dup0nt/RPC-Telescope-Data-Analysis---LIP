@@ -10,7 +10,7 @@ I = find(Q3 > 0); M3 = Q3*0; M3(I) = 1; EventM3 = sum(M3.');
 found = find(EventM1 == 1 & EventM3 == 1 & EventM2 == 1);
 
 imgzposition_1 = 0;
-imgzposition_3 = 145*2/43;
+imgzposition_3 = 33.5*2;
 imgzposition_2 = imgzposition_3/2;
 
 theta = zeros(1,length(found));
